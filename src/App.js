@@ -44,10 +44,11 @@ const App = () => {
                     }, 2000)
                 })
                 .catch(error => {
-                    setErrMsg(`Record does not exist`)
+                    setErrMsg(error.response.data.error)
+                    //console.log(error.response.data)
                     setTimeout(() => {
                     setErrMsg(null)
-                    }, 3000);
+                    }, 2000);
                     setPersons(persons.filter(person => person.id !==checkName.id))
                     setNewName('')
                     setNewPhone('')
@@ -73,7 +74,11 @@ const App = () => {
                 //setPersons(persons.concat(newPerson))
                 })
             .catch(error => {
-                alert("somethi")
+                setErrMsg(error.response.data.error)
+                console.log(error.response.data.error)
+                setTimeout(()=> {
+                    setErrMsg(null)
+                },2000)
             })
             }
     }
